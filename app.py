@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, make_response
 
 app = Flask(__name__)
@@ -10,4 +11,5 @@ def slack_events():
     return make_response("", 200)
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
